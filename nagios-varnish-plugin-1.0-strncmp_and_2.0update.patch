@@ -1,0 +1,27 @@
+--- check_varnish.c	2007-07-24 12:44:20.000000000 -0400
++++ check_varnish.c.new	2010-12-13 08:13:41.000000000 -0500
+@@ -92,7 +92,7 @@
+ {
+ 	int level;
+ 
+-	if (!strcmp(param, "ratio")) {
++	if (!strncmp(param, "ratio", 5)) {
+ 		int64_t total = VSL_stats->cache_hit + VSL_stats->cache_miss;
+ 		double ratio = 0;
+ 
+@@ -101,12 +101,12 @@
+ 		level = check_treshold(ratio, w, c, less);
+ 		message_and_exit(level, ratio, "Cache hit ratio");
+ 	}
+-#define MAC_STAT(n, t, f, d) \
++#define MAC_STAT(n, t, l, f, e) \
+ 	do { \
+ 		intmax_t ju = VSL_stats->n; \
+-		if (!strcmp(param, #n)) { \
++		if (!strncmp(param, #n, strlen(param))) { \
+ 			level = check_treshold(ju, w, c, less); \
+-			message_and_exit(level, ju, d); \
++			message_and_exit(level, ju, e); \
+ 		} \
+ 	} while (0);
+ #include "stat_field.h"
