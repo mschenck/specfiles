@@ -23,6 +23,7 @@ rm -rf %{buildroot}
 %install
 mkdir -p %{buildroot}/usr/sbin
 mkdir -p %{buildroot}/usr/bin
+mkdir -p %{buildroot}/usr/share/snmptt
 mkdir -p %{buildroot}/etc/snmp
 mkdir -p %{buildroot}/etc/logrotate.d
 mkdir -p %{buildroot}/etc/rc.d/init.d
@@ -37,6 +38,11 @@ cp snmptt-net-snmp-test %{buildroot}/usr/bin
 cp snmptt.ini %{buildroot}/etc/snmp
 cp snmptt-init.d %{buildroot}/etc/rc.d/init.d/snmptt
 cp snmptt.logrotate %{buildroot}/etc/logrotate.d/snmptt
+cp -r contrib %{buildroot}/usr/share/snmptt/
+cp -r docs %{buildroot}/usr/share/snmptt/
+cp -r examples %{buildroot}/usr/share/snmptt/
+cp sample* %{buildroot}/usr/share/snmptt/
+cp README %{buildroot}/usr/share/snmptt/
 
 %post
 echo "+------------------------------------------------------------------------------+"
@@ -77,6 +83,7 @@ rm -rf %{buildroot}
 /usr/bin/snmpttconvert
 /usr/bin/snmpttconvertmib
 /usr/bin/snmptt-net-snmp-test
+/usr/share/snmptt/*
 /etc/snmp/snmptt.ini
 /etc/rc.d/init.d/snmptt
 /etc/logrotate.d/snmptt
