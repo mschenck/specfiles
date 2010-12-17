@@ -87,6 +87,8 @@ rm -rf %{buildroot}
 /etc/snmp/snmptt.ini
 /etc/rc.d/init.d/snmptt
 /etc/logrotate.d/snmptt
+/var/log/snmptt
+/var/spool/snmptt
 
 %changelog
 * Thu Dec 16 2010 Michael Schenck <michael@tumblr.com>
