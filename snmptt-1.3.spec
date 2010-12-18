@@ -45,6 +45,9 @@ cp sample* %{buildroot}/usr/share/snmptt/
 cp README %{buildroot}/usr/share/snmptt/
 
 %post
+/usr/sbin/useradd snmptt -g snmptt
+/bin/chown snmptt:snmptt /var/log/snmptt
+/bin/chown snmptt:snmptt /var/spool/snmptt
 echo "+------------------------------------------------------------------------------+"
 echo "| SNMPTT installation successful!                                              |"
 echo "+------------------------------------------------------------------------------+"
